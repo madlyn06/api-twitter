@@ -55,7 +55,8 @@ class UsersService {
         _id: new ObjectId(user_id),
         email_verify_token,
         date_of_birth: new Date(payload.date_of_birth),
-        password: hashPassword(payload.password)
+        password: hashPassword(payload.password),
+        twitter_circle: [new ObjectId(user_id)]
       })
     )
     const [access_token, refresh_token] = await this.signToken({ user_id, verify: UserVerifyStatus.Unverified })
