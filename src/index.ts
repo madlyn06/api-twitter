@@ -40,10 +40,16 @@ initFolder()
 
 const io = new Server(httpServer, {
   /* options */
+  cors: {
+    origin: '*',
+  }
 })
 
 io.on('connection', (socket) => {
-  // ...
+  console.log(`${socket.id} conected`)
+  socket.on('disconnect', () => {
+    console.log(`${socket.id} disconnected`)
+  })
 })
 
 httpServer.listen(port, () => {
